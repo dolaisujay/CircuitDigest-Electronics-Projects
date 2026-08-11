@@ -53,3 +53,10 @@ $$
 The full academic project report is available in two formats within this directory:
 * **LaTeX Source**: [`project_report.tex`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/045_arduino_l298n_motor_driver/project_report.tex)
 * **Compiled PDF Report**: [`project_report.pdf`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/045_arduino_l298n_motor_driver/project_report.pdf)
+
+
+---
+
+## 💻 Source Code & Firmware Implementation
+The source code for this project is available in the [`src/`](src/l298n_motor_control.ino) directory:
+* **Firmware / Script**: [`l298n_motor_control.ino`](src/l298n_motor_control.ino)

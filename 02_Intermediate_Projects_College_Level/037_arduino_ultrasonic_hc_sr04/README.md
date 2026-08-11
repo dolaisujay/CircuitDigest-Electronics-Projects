@@ -53,3 +53,10 @@ $$
 The full academic project report is available in two formats within this directory:
 * **LaTeX Source**: [`project_report.tex`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/037_arduino_ultrasonic_hc_sr04/project_report.tex)
 * **Compiled PDF Report**: [`project_report.pdf`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/037_arduino_ultrasonic_hc_sr04/project_report.pdf)
+
+
+---
+
+## 💻 Source Code & Firmware Implementation
+The source code for this project is available in the [`src/`](src/ultrasonic_distance.ino) directory:
+* **Firmware / Script**: [`ultrasonic_distance.ino`](src/ultrasonic_distance.ino)

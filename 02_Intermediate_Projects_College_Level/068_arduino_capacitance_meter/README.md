@@ -53,3 +53,10 @@ $$
 The full academic project report is available in two formats within this directory:
 * **LaTeX Source**: [`project_report.tex`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/068_arduino_capacitance_meter/project_report.tex)
 * **Compiled PDF Report**: [`project_report.pdf`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/068_arduino_capacitance_meter/project_report.pdf)
+
+
+---
+
+## 💻 Source Code & Firmware Implementation
+The source code for this project is available in the [`src/`](src/capacitance_meter.ino) directory:
+* **Firmware / Script**: [`capacitance_meter.ino`](src/capacitance_meter.ino)

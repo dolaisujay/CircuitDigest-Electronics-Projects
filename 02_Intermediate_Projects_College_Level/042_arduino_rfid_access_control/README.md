@@ -53,3 +53,10 @@ $$
 The full academic project report is available in two formats within this directory:
 * **LaTeX Source**: [`project_report.tex`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/042_arduino_rfid_access_control/project_report.tex)
 * **Compiled PDF Report**: [`project_report.pdf`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/042_arduino_rfid_access_control/project_report.pdf)
+
+
+---
+
+## 💻 Source Code & Firmware Implementation
+The source code for this project is available in the [`src/`](src/rfid_access.ino) directory:
+* **Firmware / Script**: [`rfid_access.ino`](src/rfid_access.ino)

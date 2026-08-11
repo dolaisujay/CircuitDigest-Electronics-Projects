@@ -56,3 +56,10 @@ $$
 The full academic project report is available in two formats within this directory:
 * **LaTeX Source**: [`project_report.tex`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/094_rpi_opencv_face_recognition/project_report.tex)
 * **Compiled PDF Report**: [`project_report.pdf`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/094_rpi_opencv_face_recognition/project_report.pdf)
+
+
+---
+
+## 💻 Source Code & Firmware Implementation
+The source code for this project is available in the [`src/`](src/face_recognition_access.py) directory:
+* **Firmware / Script**: [`face_recognition_access.py`](src/face_recognition_access.py)

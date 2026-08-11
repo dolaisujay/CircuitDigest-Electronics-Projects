@@ -53,3 +53,10 @@ $$
 The full academic project report is available in two formats within this directory:
 * **LaTeX Source**: [`project_report.tex`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/051_esp8266_iot_smart_plug/project_report.tex)
 * **Compiled PDF Report**: [`project_report.pdf`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/051_esp8266_iot_smart_plug/project_report.pdf)
+
+
+---
+
+## 💻 Source Code & Firmware Implementation
+The source code for this project is available in the [`src/`](src/esp8266_smart_plug.ino) directory:
+* **Firmware / Script**: [`esp8266_smart_plug.ino`](src/esp8266_smart_plug.ino)

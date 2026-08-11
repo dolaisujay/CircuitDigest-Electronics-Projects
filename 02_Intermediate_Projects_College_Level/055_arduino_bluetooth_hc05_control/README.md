@@ -53,3 +53,10 @@ $$
 The full academic project report is available in two formats within this directory:
 * **LaTeX Source**: [`project_report.tex`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/055_arduino_bluetooth_hc05_control/project_report.tex)
 * **Compiled PDF Report**: [`project_report.pdf`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/055_arduino_bluetooth_hc05_control/project_report.pdf)
+
+
+---
+
+## 💻 Source Code & Firmware Implementation
+The source code for this project is available in the [`src/`](src/bluetooth_appliance_control.ino) directory:
+* **Firmware / Script**: [`bluetooth_appliance_control.ino`](src/bluetooth_appliance_control.ino)

@@ -56,3 +56,10 @@ $$
 The full academic project report is available in two formats within this directory:
 * **LaTeX Source**: [`project_report.tex`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/076_pure_sine_wave_inverter_spwm/project_report.tex)
 * **Compiled PDF Report**: [`project_report.pdf`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/076_pure_sine_wave_inverter_spwm/project_report.pdf)
+
+
+---
+
+## 💻 Source Code & Firmware Implementation
+The source code for this project is available in the [`src/`](src/spwm_inverter.ino) directory:
+* **Firmware / Script**: [`spwm_inverter.ino`](src/spwm_inverter.ino)

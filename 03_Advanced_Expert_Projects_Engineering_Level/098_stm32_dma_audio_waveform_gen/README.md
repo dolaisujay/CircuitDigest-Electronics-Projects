@@ -56,3 +56,10 @@ $$
 The full academic project report is available in two formats within this directory:
 * **LaTeX Source**: [`project_report.tex`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/098_stm32_dma_audio_waveform_gen/project_report.tex)
 * **Compiled PDF Report**: [`project_report.pdf`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/098_stm32_dma_audio_waveform_gen/project_report.pdf)
+
+
+---
+
+## 💻 Source Code & Firmware Implementation
+The source code for this project is available in the [`src/`](src/stm32_dma_audio_synth.c) directory:
+* **Firmware / Script**: [`stm32_dma_audio_synth.c`](src/stm32_dma_audio_synth.c)

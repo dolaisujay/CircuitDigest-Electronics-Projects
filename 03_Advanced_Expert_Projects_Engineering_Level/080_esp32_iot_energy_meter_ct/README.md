@@ -56,3 +56,10 @@ $$
 The full academic project report is available in two formats within this directory:
 * **LaTeX Source**: [`project_report.tex`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/080_esp32_iot_energy_meter_ct/project_report.tex)
 * **Compiled PDF Report**: [`project_report.pdf`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/080_esp32_iot_energy_meter_ct/project_report.pdf)
+
+
+---
+
+## 💻 Source Code & Firmware Implementation
+The source code for this project is available in the [`src/`](src/esp32_energy_meter.ino) directory:
+* **Firmware / Script**: [`esp32_energy_meter.ino`](src/esp32_energy_meter.ino)

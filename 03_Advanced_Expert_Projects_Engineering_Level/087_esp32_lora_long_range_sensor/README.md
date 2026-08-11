@@ -56,3 +56,10 @@ $$
 The full academic project report is available in two formats within this directory:
 * **LaTeX Source**: [`project_report.tex`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/087_esp32_lora_long_range_sensor/project_report.tex)
 * **Compiled PDF Report**: [`project_report.pdf`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/087_esp32_lora_long_range_sensor/project_report.pdf)
+
+
+---
+
+## 💻 Source Code & Firmware Implementation
+The source code for this project is available in the [`src/`](src/esp32_lora_sender.ino) directory:
+* **Firmware / Script**: [`esp32_lora_sender.ino`](src/esp32_lora_sender.ino)

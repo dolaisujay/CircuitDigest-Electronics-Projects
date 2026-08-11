@@ -53,3 +53,10 @@ $$
 The full academic project report is available in two formats within this directory:
 * **LaTeX Source**: [`project_report.tex`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/056_esp32_ble_beacon_sensor/project_report.tex)
 * **Compiled PDF Report**: [`project_report.pdf`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/056_esp32_ble_beacon_sensor/project_report.pdf)
+
+
+---
+
+## 💻 Source Code & Firmware Implementation
+The source code for this project is available in the [`src/`](src/esp32_ble_beacon.ino) directory:
+* **Firmware / Script**: [`esp32_ble_beacon.ino`](src/esp32_ble_beacon.ino)

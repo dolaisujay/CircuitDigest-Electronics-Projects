@@ -53,3 +53,10 @@ $$
 The full academic project report is available in two formats within this directory:
 * **LaTeX Source**: [`project_report.tex`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/060_arduino_obstacle_avoiding_robot/project_report.tex)
 * **Compiled PDF Report**: [`project_report.pdf`](file:///c:/Users/Sujay/Desktop/Bigyanlabs%20Projects/060_arduino_obstacle_avoiding_robot/project_report.pdf)
+
+
+---
+
+## 💻 Source Code & Firmware Implementation
+The source code for this project is available in the [`src/`](src/obstacle_avoiding_robot.ino) directory:
+* **Firmware / Script**: [`obstacle_avoiding_robot.ino`](src/obstacle_avoiding_robot.ino)
