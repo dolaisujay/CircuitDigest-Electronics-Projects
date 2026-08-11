@@ -7,6 +7,10 @@
 *.fdb_latexmk
 *.synctex.gz
 
+# Python scripts & bytecode
+*.py
+__pycache__/
+
 # OS generated files
 .DS_Store
 Thumbs.db

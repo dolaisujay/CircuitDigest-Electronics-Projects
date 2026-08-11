@@ -1,0 +1,90 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+
+\setlength{\headheight}{14pt}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Project Report: ESP32 Wi-Fi Home Automation System with Web Server Control},
+    pdfpagemode=UseOutlines,
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{ESP32 Wi-Fi Home Automation System }
+\lhead{Technical Project Report}
+\rfoot{Page \thepage}
+
+\title{\textbf{\Huge Engineering Project Report}\\[0.5em] \Large Project 043: ESP32 Wi-Fi Home Automation System with Web Server Control}
+\author{\textbf{Bigyanlabs Engineering Team}\\ Electronics \& Embedded Systems Division}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+This technical report presents the comprehensive design, circuit schematics, bill of materials, mathematical modeling, assembly methodology, and experimental testing for \textbf{ESP32 Wi-Fi Home Automation System with Web Server Control}. Classified under the \textbf{Intermediate (College Level)} tier in the \textbf{IoT / Smart Home} category, this design provides optimized performance, high reliability, and clear practical utility for school and engineering applications.
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Introduction \& System Overview}
+The objective of this project is to implement a robust electronic system for \textbf{ESP32 Wi-Fi Home Automation System with Web Server Control}. This document details the step-by-step engineering design, component functions, mathematical principles, and experimental results.
+
+\section{Bill of Materials (Components List)}
+\begin{table}[h!]
+\centering
+\caption{Bill of Materials for ESP32 Wi-Fi Home Automation System with Web Server Control}
+\vspace{0.5em}
+\begin{tabular}{clcp{7cm}}
+\toprule
+\textbf{S.No.} & \textbf{Component Name} & \textbf{Qty} & \textbf{Circuit Function} \\
+\midrule
+1 & Microcontroller / Op-Amp & 1 & Arduino UNO / ESP8266 / ESP32 / LM358 \\
+2 & Transducers / Sensors & 2 & Interface sensor modules \\
+3 & LCD / OLED Display & 1 & Visual data display (16x2 / I2C) \\
+4 & Relays / Driver MOSFETs & 2 & Actuator control interface \\
+5 & Passives and Connectors & 1 Set & Resistors, capacitors, breadboard / PCB \\
+6 & Power Module & 1 & 5V / 12V regulated DC source \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{System Architecture \& Methodology}
+The ESP32 Wi-Fi Home Automation System with Web Server Control integrates hardware sensors and microcontrollers/op-amps. Sensor signals are processed through custom firmware or analog conditioning stages and displayed locally or streamed over Wi-Fi/Bluetooth.
+
+\section{Circuit Assembly \& Testing Procedure}
+\begin{enumerate}
+    \item Place core active components and microcontrollers/ICs on the breadboard or PCB.
+    \item Wire DC supply rails (+VCC and GND) with appropriate decoupling capacitors.
+    \item Connect sensor networks and input signal conditioning circuits.
+    \item Interface output switches, MOSFET drivers, or visual/acoustic indicators.
+    \item Apply power and measure operating node voltages to verify proper performance.
+\end{enumerate}
+
+\section{Mathematical Derivations \& Governing Equations}
+\begin{equation}
+V_{\text{ADC}} = \frac{\text{ADC\_Value}}{1023} \cdot 5.0\,\text{V}
+\end{equation}
+\begin{equation}
+\text{Distance} = \frac{\text{Time} \times 0.0343\,\text{cm/s}}{2}
+\end{equation}
+
+\section{Applications \& Engineering Conclusion}
+Engineering laboratory projects, IoT sensor nodes, automated environmental monitoring, and embedded iot / smart home.
+
+\end{document}

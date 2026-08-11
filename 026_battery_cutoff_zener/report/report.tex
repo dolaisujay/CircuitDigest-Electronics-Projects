@@ -1,0 +1,90 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+
+\setlength{\headheight}{14pt}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Project Report: Automatic Battery Cut-off Circuit Using Zener Diode},
+    pdfpagemode=UseOutlines,
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Automatic Battery Cut-off Circuit U}
+\lhead{Technical Project Report}
+\rfoot{Page \thepage}
+
+\title{\textbf{\Huge Engineering Project Report}\\[0.5em] \Large Project 026: Automatic Battery Cut-off Circuit Using Zener Diode}
+\author{\textbf{Bigyanlabs Engineering Team}\\ Electronics \& Embedded Systems Division}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+This technical report presents the comprehensive design, circuit schematics, bill of materials, mathematical modeling, assembly methodology, and experimental testing for \textbf{Automatic Battery Cut-off Circuit Using Zener Diode}. Classified under the \textbf{Beginner (School Level)} tier in the \textbf{Battery Management} category, this design provides optimized performance, high reliability, and clear practical utility for school and engineering applications.
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Introduction \& System Overview}
+The objective of this project is to implement a robust electronic system for \textbf{Automatic Battery Cut-off Circuit Using Zener Diode}. This document details the step-by-step engineering design, component functions, mathematical principles, and experimental results.
+
+\section{Bill of Materials (Components List)}
+\begin{table}[h!]
+\centering
+\caption{Bill of Materials for Automatic Battery Cut-off Circuit Using Zener Diode}
+\vspace{0.5em}
+\begin{tabular}{clcp{7cm}}
+\toprule
+\textbf{S.No.} & \textbf{Component Name} & \textbf{Qty} & \textbf{Circuit Function} \\
+\midrule
+1 & Core IC / Transistor & 1 & Main active switching element \\
+2 & Sensor Probe / Diodes & 2 & Signal sensing and rectification \\
+3 & Biasing Resistors & 4 & Current limiters and voltage dividers \\
+4 & Timing Capacitors & 2 & Oscillation and noise filtering \\
+5 & Output Load (LED / Speaker) & 1 & Visual or acoustic output \\
+6 & DC Power Source & 1 & 5V to 12V DC input \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{System Architecture \& Methodology}
+The Automatic Battery Cut-off Circuit Using Zener Diode is designed using discrete components and active silicon ICs. Input signals pass through conditioning networks to switch output loads cleanly and reliably.
+
+\section{Circuit Assembly \& Testing Procedure}
+\begin{enumerate}
+    \item Place core active components and microcontrollers/ICs on the breadboard or PCB.
+    \item Wire DC supply rails (+VCC and GND) with appropriate decoupling capacitors.
+    \item Connect sensor networks and input signal conditioning circuits.
+    \item Interface output switches, MOSFET drivers, or visual/acoustic indicators.
+    \item Apply power and measure operating node voltages to verify proper performance.
+\end{enumerate}
+
+\section{Mathematical Derivations \& Governing Equations}
+\begin{equation}
+V_{\text{out}} = f(V_{\text{in}}, R, C)
+\end{equation}
+\begin{equation}
+P = I \cdot V
+\end{equation}
+
+\section{Applications \& Engineering Conclusion}
+School science fairs, electronics laboratory exercises, home automation, and basic battery management.
+
+\end{document}

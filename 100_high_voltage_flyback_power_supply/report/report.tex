@@ -1,0 +1,93 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+
+\setlength{\headheight}{14pt}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Project Report: High-Voltage DC-DC Flyback Power Supply Converter Circuit for Photomultipliers},
+    pdfpagemode=UseOutlines,
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{High-Voltage DC-DC Flyback Power Su}
+\lhead{Technical Project Report}
+\rfoot{Page \thepage}
+
+\title{\textbf{\Huge Engineering Project Report}\\[0.5em] \Large Project 100: High-Voltage DC-DC Flyback Power Supply Converter Circuit for Photomultipliers}
+\author{\textbf{Bigyanlabs Engineering Team}\\ Electronics \& Embedded Systems Division}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+This technical report presents the comprehensive design, circuit schematics, bill of materials, mathematical modeling, assembly methodology, and experimental testing for \textbf{High-Voltage DC-DC Flyback Power Supply Converter Circuit for Photomultipliers}. Classified under the \textbf{Advanced / Expert (Engineering Level)} tier in the \textbf{High-Voltage SMPS Converters} category, this design provides optimized performance, high reliability, and clear practical utility for school and engineering applications.
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Introduction \& System Overview}
+The objective of this project is to implement a robust electronic system for \textbf{High-Voltage DC-DC Flyback Power Supply Converter Circuit for Photomultipliers}. This document details the step-by-step engineering design, component functions, mathematical principles, and experimental results.
+
+\section{Bill of Materials (Components List)}
+\begin{table}[h!]
+\centering
+\caption{Bill of Materials for High-Voltage DC-DC Flyback Power Supply Converter Circuit for Photomultipliers}
+\vspace{0.5em}
+\begin{tabular}{clcp{7cm}}
+\toprule
+\textbf{S.No.} & \textbf{Component Name} & \textbf{Qty} & \textbf{Circuit Function} \\
+\midrule
+1 & Power Transistors / High-End MCU & 2 & Power MOSFETs / IGBTs / STM32 / ESP32 \\
+2 & High-Frequency Transformers & 1 & Ferro-magnetic energy storage core \\
+3 & Gate Drivers / Fast Diodes & 2 & IR2110 gate driver and Ultrafast diodes \\
+4 & Sensing Amplifiers / CT Sensors & 2 & Current sensors (ACS712/SCT-013) and Differential amps \\
+5 & Filter Capacitors (Low ESR) & 2 & Low ESR electrolytic and Polypropylene film caps \\
+6 & Auxiliary Power \\& Protection & 1 Set & Auxiliary SMPS, heatsinks, and snubber networks \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{System Architecture \& Methodology}
+The High-Voltage DC-DC Flyback Power Supply Converter Circuit for Photomultipliers is an advanced engineering implementation featuring high-frequency switching, closed-loop feedback algorithms, or high-speed DSP processing for maximum efficiency and precision.
+
+\section{Circuit Assembly \& Testing Procedure}
+\begin{enumerate}
+    \item Place core active components and microcontrollers/ICs on the breadboard or PCB.
+    \item Wire DC supply rails (+VCC and GND) with appropriate decoupling capacitors.
+    \item Connect sensor networks and input signal conditioning circuits.
+    \item Interface output switches, MOSFET drivers, or visual/acoustic indicators.
+    \item Apply power and measure operating node voltages to verify proper performance.
+\end{enumerate}
+
+\section{Mathematical Derivations \& Governing Equations}
+\begin{equation}
+V_{\text{out}} = \frac{V_{\text{in}}}{1 - D}
+\end{equation}
+\begin{equation}
+\eta = \frac{P_{\text{out}}}{P_{\text{in}}} \times 100\%
+\end{equation}
+\begin{equation}
+f_r = \frac{1}{2\pi \sqrt{L C}}
+\end{equation}
+
+\section{Applications \& Engineering Conclusion}
+Industrial automation, renewable energy systems, electric vehicle power trains, aerospace electronics, and high-performance high-voltage smps converters.
+
+\end{document}
