@@ -1,0 +1,123 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+
+\setlength{\headheight}{14pt}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Project Report: Wireless Audio Transfer Using Laser Light},
+    pdfpagemode=UseOutlines,
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Li-Fi Wireless Audio Transfer}
+\lhead{Technical Project Report}
+\rfoot{Page \thepage}
+
+\title{\textbf{\Huge Engineering Project Report}\\[0.5em] \Large Wireless Audio Transmission System Using Modulated LASER Light (Li-Fi Technology)}
+\author{\textbf{Bigyanlabs Engineering Team}\\ Optical Communications \& Embedded Systems Division}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+This technical report details the design, construction, and field evaluation of a free-space optical audio transmission system based on Light Fidelity (Li-Fi) principles. The system uses a MAX4466 electret microphone pre-amplifier and a PAM8403 Class-D audio amplifier to intensity-modulate a $650\,\text{nm}$, $5\,\text{mW}$ red semiconductor laser diode with analog audio signals. At the receiver end, a mini solar panel acts as a large-area photovoltaic detector, converting light intensity fluctuations into a proportional photocurrent. A secondary PAM8403 amplifier boosts the signal to drive a $4\,\Omega$, $10\,\text{W}$ speaker. Empirical field testing demonstrated clear audio reception across indoor distances up to $50\,\text{meters}$ and line-of-sight outdoor distances exceeding $100\,\text{meters}$.
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Introduction \& System Overview}
+Visible Light Communication (VLC) and Li-Fi utilize visible light spectrum ($400\,\text{nm} - 700\,\text{nm}$) for high-speed, zero-RF-interference data and analog audio transmission.
+
+The objective of this project is to implement a robust, low-cost optical audio link transmitting voice and music over a focused laser beam directly onto a photovoltaic solar panel photodetector.
+
+\section{Bill of Materials}
+\begin{table}[h!]
+\centering
+\caption{Bill of Materials for Li-Fi Wireless Audio Link}
+\vspace{0.5em}
+\begin{tabular}{@{}c l c l p{6cm}@{}}
+\toprule
+\textbf{S.No.} & \textbf{Component} & \textbf{Qty} & \textbf{Part Number} & \textbf{Circuit Function} \\
+\midrule
+1 & Mic Pre-Amplifier & 1 & MAX4466 Module & Electret microphone pre-amp with adjustable gain \\
+2 & Audio Amplifiers & 2 & PAM8403 Modules & 3W + 3W Class-D dual-channel power amps \\
+3 & Laser Diode & 1 & $650\,\text{nm}$ Red (5V, 5mW) & Optical light transmitter \\
+4 & Current Resistor & 1 & $30\,\Omega$, 1/4W & Limits laser forward drive current \\
+5 & Photodetector & 1 & Mini Solar Panel (5V) & Large surface-area optical photodiode array \\
+6 & Output Speaker & 1 & $4\,\Omega$, 10 Watt & Transducer converting audio electrical signals to sound \\
+7 & Voltage Regulators & 2 & LM7805 & $5\,\text{V}$ DC regulators for Tx and Rx modules \\
+8 & Power Supplies & 2 & $9\,\text{V}$ DC Batteries & Isolated power sources for Tx and Rx \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{System Operating Principle}
+
+\subsection{Transmitter Stage (Acoustic to Optical Modulation)}
+\begin{enumerate}
+    \item Acoustic sound waves strike the electret microphone, producing millivolt-level electrical signals amplified by the MAX4466 module.
+    \item The output signal enters the PAM8403 Class-D amplifier module.
+    \item The PAM8403 output drives the $650\,\text{nm}$ laser diode. The instantaneous laser output intensity ($P_{\text{opt}}$) varies in direct proportion to the forward current ($I_F$):
+    \begin{equation}
+    P_{\text{opt}}(t) = P_0 + \eta \cdot i_{\text{audio}}(t)
+    \end{equation}
+    where $P_0$ is the baseline optical power, $\eta$ is differential efficiency, and $i_{\text{audio}}(t)$ is the amplified audio current.
+\end{enumerate}
+
+\subsection{Receiver Stage (Optical to Acoustic Demodulation)}
+\begin{enumerate}
+    \item Modulated laser light hits the mini solar panel. Photons induce electron-hole pairs via the photoelectric effect, generating photocurrent $i_{\text{ph}}(t)$:
+    \begin{equation}
+    i_{\text{ph}}(t) = R \cdot P_{\text{opt}}(t)
+    \end{equation}
+    where $R$ is solar panel responsivity ($\text{A/W}$).
+    \item The AC photocurrent component passes through a $100\,\text{k}\Omega$ biasing pot into the second PAM8403 amplifier.
+    \item The PAM8403 amplifies the audio signal to drive the $4\,\Omega$ $10\,\text{W}$ speaker.
+\end{enumerate}
+
+\section{Comparison: Li-Fi vs. Wi-Fi vs. Bluetooth}
+\begin{table}[h!]
+\centering
+\caption{Technology Comparison Matrix}
+\vspace{0.5em}
+\begin{tabular}{@{}l l l l@{}}
+\toprule
+\textbf{Parameter} & \textbf{Li-Fi (Laser Audio)} & \textbf{Wi-Fi} & \textbf{Bluetooth} \\
+\midrule
+Medium & Visible Light ($650\,\text{nm}$) & RF ($2.4\,\text{GHz} / 5\,\text{GHz}$) & RF ($2.4\,\text{GHz}$) \\
+Line-of-Sight & \textbf{Required (Strict)} & Not Required & Not Required \\
+RF Interference & \textbf{Zero (RF Safe)} & Moderate / High & High \\
+Latency & \textbf{$< 1\,\text{ms}$} & $5\,\text{ms} - 20\,\text{ms}$ & $20\,\text{ms} - 100\,\text{ms}$ \\
+Security & High (Cannot cross walls) & Encryption Needed & Pairing Needed \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Field Testing \& Range Results}
+\begin{itemize}
+    \item \textbf{Indoor Test Range:} $10\,\text{m} - 50\,\text{m}$ (Clear audio playback without noticeable distortion).
+    \item \textbf{Outdoor Range:} $> 100\,\text{m}$ along direct line-of-sight.
+    \item \textbf{Noise Suppression:} A dark optical hood over the solar panel shields ambient sunlight DC noise.
+\end{itemize}
+
+\section{Conclusion}
+The Laser Li-Fi Wireless Audio Transfer System successfully demonstrates high-fidelity optical audio communication over long line-of-sight distances, offering zero RF emissions and low signal latency.
+
+\end{document}

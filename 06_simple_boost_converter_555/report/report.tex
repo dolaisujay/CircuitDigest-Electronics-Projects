@@ -1,0 +1,120 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+
+\setlength{\headheight}{14pt}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Project Report: Simple DC-DC Boost Converter Using 555 Timer},
+    pdfpagemode=UseOutlines,
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{DC-DC Boost Converter (555 + IRFZ44N)}
+\lhead{Technical Project Report}
+\rfoot{Page \thepage}
+
+\title{\textbf{\Huge Engineering Project Report}\\[0.5em] \Large Simple DC-DC Boost Converter Circuit Using NE555 Timer IC and IRFZ44N MOSFET}
+\author{\textbf{Bigyanlabs Engineering Team}\\ Power Electronics \& Switch-Mode Power Supply Division}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+This engineering report presents the design, mathematical formulation, circuit implementation, and power output testing of a non-isolated DC-DC Boost Converter using an NE555 timer IC. The 555 IC functions in astable mode as a Pulse Width Modulation (PWM) oscillator driving an IRFZ44N N-Channel Power MOSFET switch. Energy stored in a $100\,\mu\text{H}$ toroidal inductor during the MOSFET conduction phase is transferred to a $100\,\mu\text{F}$ output filter capacitor through a 1N5822 Schottky diode during the off phase. Powered by a single $3.4\,\text{V} - 3.7\,\text{V}$ Li-ion battery, the converter successfully steps up the voltage to $7.5\,\text{V} - 12\,\text{V}$ DC, delivering output power levels up to $30\,\text{Watts}$ ($3.2\,\text{A}$ short-circuit capability). Complete mathematical derivations, duty cycle control relations, component selection rules, and closed-loop feedback upgrade recommendations are detailed.
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Introduction \& SMPS Concepts}
+Switch-Mode Power Supplies (SMPS) offer high power conversion efficiency ($\ge 85\%$) compared to linear regulators by operating switching components (MOSFETs) strictly in saturation (ON) or cutoff (OFF) modes.
+
+A **Boost Converter** (Step-Up Converter) increases DC voltage while decreasing output current proportionally, satisfying conservation of power ($P_{\text{in}} \approx P_{\text{out}}$).
+
+\section{Bill of Materials}
+\begin{table}[h!]
+\centering
+\caption{Bill of Materials for 555-Based Boost Converter}
+\vspace{0.5em}
+\begin{tabular}{@{}c l c l p{6cm}@{}}
+\toprule
+\textbf{S.No.} & \textbf{Component} & \textbf{Qty} & \textbf{Part Number} & \textbf{Circuit Function} \\
+\midrule
+1 & PWM Timer IC & 1 & NE555N & High-frequency PWM oscillator \\
+2 & Power Switch & 1 & IRFZ44N MOSFET & $55\,\text{V}$, $49\,\text{A}$, $17.5\,\text{m}\Omega$ N-Channel switch \\
+3 & Storage Inductor & 1 & $100\,\mu\text{H}$ Toroidal & Inductive energy storage element ($\ge 3\,\text{A}$) \\
+4 & Rectifier Diode & 1 & 1N5822 Schottky & Fast-recovery output diode ($40\,\text{V}$, $3\,\text{A}$) \\
+5 & Steering Diodes & 2 & 1N4001 / 1N4148 & Astable duty-cycle control network \\
+6 & Filter Capacitor & 1 & $100\,\mu\text{F}$, 35V & High-voltage output DC smoothing \\
+7 & Timing Capacitors & 2 & $1\,\text{nF}$, $100\,\text{nF}$ & 555 timing ($C_1$) and control filter ($C_2$) \\
+8 & Potentiometer & 1 & $50\,\text{k}\Omega$ Trimpot & PWM duty cycle ($D$) adjustment \\
+9 & Connector Terminals & 2 & 2-Pin Screw Blocks & Input and output DC connections \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Mathematical Analysis \& Operational Equations}
+
+\subsection{Two-Stage Switching Operation}
+\begin{enumerate}
+    \item \textbf{Stage 1: MOSFET ON ($T_{\text{on}}$ Phase):}
+    Current flows from $V_{\text{in}} \rightarrow \text{Inductor} \rightarrow \text{MOSFET} \rightarrow \text{GND}$. Energy is stored in the magnetic field ($E_L = \frac{1}{2}L I^2$). The Schottky diode is reverse-biased.
+    \item \textbf{Stage 2: MOSFET OFF ($T_{\text{off}}$ Phase):}
+    The MOSFET turns OFF. The inductor opposes current drop by producing a flyback voltage ($V_L = L \frac{di}{dt}$) in series with $V_{\text{in}}$, forward-biasing the Schottky diode to charge the output capacitor to $V_{\text{out}}$.
+\end{enumerate}
+
+\subsection{Duty Cycle \& Voltage Step-Up Ratio}
+The switching period is $T = T_{\text{on}} + T_{\text{off}}$. The duty cycle $D$ is:
+\begin{equation}
+D = \frac{T_{\text{on}}}{T}
+\end{equation}
+
+Applying Kirchhoff's Voltage Law across one complete switching cycle yields the steady-state boost ratio:
+\begin{equation}
+V_{\text{out}} = \frac{V_{\text{in}}}{1 - D}
+\end{equation}
+
+\subsection{Sample Boost Calculation}
+For an input $V_{\text{in}} = 3.7\,\text{V}$ and a duty cycle $D = 0.65$:
+\[
+V_{\text{out}} = \frac{3.7}{1 - 0.65} = \frac{3.7}{0.35} \approx 10.57\,\text{V}
+\]
+
+\subsection{Inductor Current Ripple Formula}
+The peak-to-peak inductor ripple current ($\Delta I_L$) is given by:
+\begin{equation}
+\Delta I_L = \frac{V_{\text{in}} \cdot D}{f \cdot L}
+\end{equation}
+where $f$ is 555 switching frequency ($\approx 25\,\text{kHz}$) and $L = 100\,\mu\text{H}$.
+
+\section{Performance Evaluation \& Experimental Results}
+\begin{itemize}
+    \item \textbf{Input Source:} $3.4\,\text{V} - 3.7\,\text{V}$ Li-ion Cell ($2000\,\text{mAh}$).
+    \item \textbf{Measured Output Voltage:} $7.5\,\text{V} - 12.0\,\text{V}$ DC (Adjustable via $50\,\text{k}\Omega$ pot).
+    \item \textbf{Peak Short-Circuit Current:} $3.2\,\text{Amperes}$ ($\sim 30\,\text{W}$ peak handling capacity).
+    \item \textbf{Note on Construction:} High peak currents ($>3\,\text{A}$) necessitate assembly on a soldered Perfboard/PCB to avoid breadboard trace melting.
+\end{itemize}
+
+\section{Closed-Loop Feedback Upgrade Recommendation}
+This basic circuit runs in **open-loop mode** without feedback. Connecting a heavy load causes voltage sag. For a regulated $12\,\text{V}$ output, add a feedback resistive divider connected to a microcontroller ADC (or TL431 op-amp) to dynamically adjust 555 PWM duty cycle ($D$) under varying load currents.
+
+\section{Conclusion}
+The NE555 + IRFZ44N DC-DC Boost Converter effectively steps up low DC voltages ($3.7\,\text{V} \rightarrow 12\,\text{V}$) with high power density ($\sim 30\,\text{W}$), illustrating fundamental SMPS switching principles.
+
+\end{document}

@@ -1,0 +1,175 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Project Report: LED Chaser Circuit with 555 Timer IC and CD4017},
+    pdfpagemode=FullName,
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{LED Chaser Circuit (555 + CD4017)}
+\lhead{Technical Project Report}
+\rfoot{Page \thepage}
+
+\title{\textbf{\Huge Engineering Project Report}\\[0.5em] \Large Sequential LED Chaser Circuit Using NE555 Timer IC and CD4017 Decade Counter}
+\author{\textbf{Bigyanlabs Engineering Team}\\ Circuit Design \& Hardware Prototyping Division}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+This report details the design, theoretical analysis, schematic implementation, and empirical validation of a 10-stage sequential LED Chaser Circuit. The circuit utilizes an NE555 timer IC configured as an astable multivibrator to generate a variable-frequency clock signal ($0.5\,\text{Hz} - 15\,\text{Hz}$), which drives a CD4017 CMOS 5-stage Johnson decade counter. The decoded output pins ($Q_0$ through $Q_9$) sequentially activate ten light-emitting diodes (LEDs) in a continuous running sequence. The clock frequency is controlled via a $50\,\text{k}\Omega$ potentiometer. This document provides complete component specifications, mathematical derivations of astable timing equations, pinout descriptions, step-by-step breadboard assembly procedures, and troubleshooting guidelines.
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Introduction \& Objectives}
+Sequential lighting displays, commonly known as LED chasers or running lights, are widely utilized in decorative illumination, visual alarm indicators, and digital logic demonstration platforms. The primary objective of this project is to construct a low-cost, highly reliable, discrete sequential control system without utilizing programmable microcontrollers.
+
+\subsection{Key Design Goals}
+\begin{itemize}
+    \item Achieve sequential illumination of 10 independent output LEDs.
+    \item Implement adjustable clock pulse generation using an NE555 timer.
+    \item Utilize a CD4017 decade counter for non-overlapping 1-of-10 output decoding.
+    \item Enable user-controlled speed modulation via a variable resistance feedback network.
+    \item Operating supply voltage compatibility: $5\,\text{V}$ to $12\,\text{V}$ DC (Standard $9\,\text{V}$ DC battery).
+\end{itemize}
+
+\section{System Architecture \& Component Specifications}
+The system comprises two core integrated circuit stages: a pulse generation stage (NE555) and a decade counter decoding stage (CD4017).
+
+\subsection{Bill of Materials (BOM)}
+\begin{table}[h!]
+\centering
+\caption{Complete Bill of Materials for LED Chaser Circuit}
+\vspace{0.5em}
+\begin{tabular}{@{}c l c l p{6cm}@{}}
+\toprule
+\textbf{S.No.} & \textbf{Component} & \textbf{Qty} & \textbf{Value/Part} & \textbf{Circuit Function} \\
+\midrule
+1 & Timer IC & 1 & NE555P & Astable clock oscillator \\
+2 & Counter IC & 1 & CD4017BE & 5-stage Johnson decade counter \\
+3 & Fixed Resistor ($R_1$) & 1 & $1\,\text{k}\Omega$, 1/4W & Limits minimum charging resistance \\
+4 & Potentiometer ($R_2$) & 1 & $50\,\text{k}\Omega$ & Variable speed control \\
+5 & Timing Cap ($C_1$) & 1 & $10\,\mu\text{F}$, 25V & Astable RC timing capacitor \\
+6 & Noise Cap ($C_2$) & 1 & $0.1\,\mu\text{F}$ (104) & Control voltage noise decoupling \\
+7 & Output Indicators & 10 & 5mm Blue LEDs & Sequential visual indicators \\
+8 & Power Source & 1 & $9\,\text{V}$ DC Battery & Main system power \\
+9 & Breadboard \& Wires & 1 & Standard Kit & Circuit interconnects \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Integrated Circuit Pin Configurations}
+
+\subsection{NE555 Timer IC Pinout}
+The NE555 is an 8-pin precision timing IC. Its pin configuration for this project is as follows:
+\begin{itemize}[noitemsep]
+    \item \textbf{Pin 1 (GND):} Connected to common circuit Ground ($0\,\text{V}$).
+    \item \textbf{Pin 2 (Trigger):} Tied to Pin 6 and top plate of $C_1$. Initiates pulse when $V < \frac{1}{3}V_{CC}$.
+    \item \textbf{Pin 3 (Output):} Outputs square wave clock pulses connected to CD4017 Pin 14.
+    \item \textbf{Pin 4 (Reset):} Active-LOW reset. Tied to $V_{CC}$ ($+9\,\text{V}$) to enable normal operation.
+    \item \textbf{Pin 5 (Control Voltage):} Decoupled to GND via $0.1\,\mu\text{F}$ capacitor to suppress noise.
+    \item \textbf{Pin 6 (Threshold):} Tied to Pin 2. Resets output LOW when voltage exceeds $\frac{2}{3}V_{CC}$.
+    \item \textbf{Pin 7 (Discharge):} Connected between $R_1$ ($1\,\text{k}\Omega$) and $R_2$ ($50\,\text{k}\Omega$ pot).
+    \item \textbf{Pin 8 (VCC):} Connected to positive supply voltage ($+9\,\text{V}$).
+\end{itemize}
+
+\subsection{CD4017 Decade Counter Pinout}
+The CD4017 is a 16-pin CMOS decade counter with 10 decoded outputs:
+\begin{itemize}[noitemsep]
+    \item \textbf{Outputs $Q_0 - Q_9$ (Pins 3, 2, 4, 7, 10, 1, 5, 6, 9, 11):} Connected sequentially to Anodes of LEDs 1--10.
+    \item \textbf{Pin 8 ($V_{SS}$):} Connected to Ground ($0\,\text{V}$).
+    \item \textbf{Pin 12 (Carry Out):} Unconnected (used when cascading multiple 4017 ICs).
+    \item \textbf{Pin 13 (Clock Enable / CE):} Tied to GND to enable continuous counting.
+    \item \textbf{Pin 14 (Clock Input / CLK):} Receives clock pulses from NE555 Pin 3.
+    \item \textbf{Pin 15 (Reset / RST):} Tied to GND to allow full 10-step sequence ($Q_0 \rightarrow Q_9$).
+    \item \textbf{Pin 16 ($V_{DD}$):} Connected to positive supply voltage ($+9\,\text{V}$).
+\end{itemize}
+
+\section{Theoretical Circuit Analysis \& Formulas}
+The NE555 timer operates as an astable multivibrator where timing capacitor $C_1$ continuously charges and discharges between $\frac{1}{3}V_{CC}$ and $\frac{2}{3}V_{CC}$.
+
+\subsection{Charging and Discharging Equations}
+The time during which the 555 output (Pin 3) remains HIGH ($T_{\text{high}}$) corresponds to $C_1$ charging through $(R_1 + R_2)$:
+\begin{equation}
+T_{\text{high}} = 0.693 \cdot (R_1 + R_2) \cdot C_1
+\end{equation}
+
+The time during which the output remains LOW ($T_{\text{low}}$) corresponds to $C_1$ discharging through $R_2$ into Pin 7:
+\begin{equation}
+T_{\text{low}} = 0.693 \cdot R_2 \cdot C_1
+\end{equation}
+
+The total period ($T$) of the square wave clock pulse is:
+\begin{equation}
+T = T_{\text{high}} + T_{\text{low}} = 0.693 \cdot (R_1 + 2 R_2) \cdot C_1
+\end{equation}
+
+The oscillation frequency ($f$) is given by:
+\begin{equation}
+f = \frac{1}{T} = \frac{1.44}{(R_1 + 2 R_2) \cdot C_1}
+\end{equation}
+
+\subsection{Sample Frequency Calculation}
+Given $R_1 = 1\,\text{k}\Omega$, $C_1 = 10\,\mu\text{F}$, and varying potentiometer $R_2$:
+\begin{itemize}
+    \item \textbf{Maximum Speed ($R_2 = 1\,\text{k}\Omega$):}
+    \[
+    f_{\text{max}} = \frac{1.44}{(1000 + 2000) \times 10 \times 10^{-6}} = \frac{1.44}{0.03} = 48\,\text{Hz}
+    \]
+    \item \textbf{Minimum Speed ($R_2 = 50\,\text{k}\Omega$):}
+    \[
+    f_{\text{min}} = \frac{1.44}{(1000 + 100000) \times 10 \times 10^{-6}} = \frac{1.44}{1.01} \approx 1.42\,\text{Hz}
+    \]
+\end{itemize}
+
+\section{Step-by-Step Construction Procedure}
+\begin{enumerate}
+    \item Insert NE555 and CD4017 ICs onto the breadboard bridging the center notch.
+    \item Connect Power Rails: Connect Pin 8 and Pin 4 of 555, and Pin 16 of 4017 to $+9\,\text{V}$. Connect Pin 1 of 555, Pin 8, 13, and 15 of 4017 to GND.
+    \item Wire 555 Astable: Connect $R_1 = 1\,\text{k}\Omega$ from $+9\,\text{V}$ to 555 Pin 7. Connect $50\,\text{k}\Omega$ potentiometer between Pin 7 and Pin 6. Jumper Pin 6 to Pin 2. Connect $10\,\mu\text{F}$ capacitor $C_1$ from Pin 2 to GND.
+    \item Connect $0.1\,\mu\text{F}$ ceramic capacitor from 555 Pin 5 to GND.
+    \item Connect clock line jumper from 555 Pin 3 to CD4017 Pin 14.
+    \item Connect the anodes of 10 LEDs to CD4017 output pins ($Q_0 - Q_9$) in exact sequential order (Pins 3, 2, 4, 7, 10, 1, 5, 6, 9, 11).
+    \item Connect all 10 LED cathodes to the common GND rail.
+    \item Connect $9\,\text{V}$ battery power. Adjust potentiometer to observe smooth LED chasing.
+\end{enumerate}
+
+\section{Troubleshooting \& Circuit Modifications}
+\begin{table}[h!]
+\centering
+\caption{Troubleshooting Guide for LED Chaser Circuit}
+\vspace{0.5em}
+\begin{tabular}{@{}l p{5.5cm} p{6.5cm}@{}}
+\toprule
+\textbf{Symptom} & \textbf{Probable Cause} & \textbf{Corrective Action} \\
+\midrule
+LEDs solid ON & 555 not oscillating / Pin 3 floating & Check Pin 2-6 jumper and $C_1$ orientation \\
+Counter stuck at $Q_0$ & Pin 13 (CE) or Pin 15 (RST) floating & Ensure Pins 13 and 15 are tied to GND \\
+Erratic / Skipping LEDs & Power supply noise or floating clock & Verify $C_2$ on 555 Pin 5 and clean clock line \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Conclusion}
+The LED Chaser Circuit using NE555 and CD4017 demonstrates the fundamentals of astable timing generation and sequential digital counting without microcontrollers. The mathematical model aligns precisely with empirical timing observations across varying potentiometer resistances.
+
+\end{document}
